@@ -59,6 +59,7 @@
     <div class="nav">
         <h1>WHO AM I?</h1>
     </div>
+    <h2 id="statusText"></h2>
     <div class="scoreArea">
         <h2>Score:</h2>
         <p id="score">0 / 12</p>
@@ -75,21 +76,20 @@
 <script>
 var index = 0;
 var score = 0;
-var outOf = 12;
 var names = [
     "edwinencarnacion",
     "maisiewilliams",
     "edsheeran",
-    "joanna",
     "margotrobbie",
     "adele",
     "justintrudeau",
     "robertoosuna",
-    "patrick",
     "emmawatson",
     "beyonce",
     "drake"
 ]
+var outOf = names.length;
+
 
 startGame();
 
@@ -116,7 +116,13 @@ function checkName() {
         score++;
         $("#score").text(score + " / " + outOf);
         setPicture( getPicture( 0 ));
-        setTimeout( function(){ index++; setPicture( getPicture( 1 ));  $("#nameText").val("")}, 2000);
+        $("#statusText").html("Correct!");
+        setTimeout( function(){ index++; setPicture( getPicture( 1 ));  $("#nameText").val("");$("#statusText").html("");}, 2000);
+
+    } else {
+        $("#statusText").html("Wrong!");
+        setTimeout( function(){ index++; setPicture( getPicture( 1 ));$("#nameText").val(""); $("#statusText").html("");}, 2000);
+
 
     }
 }
